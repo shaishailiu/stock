@@ -18,23 +18,7 @@ data:
       enabled: true
 
 watchlist:
-  hk:
-    - "00700.HK"
-    - "09988.HK"
-    - "09999.HK"
-    # 可通过配置或外部文件加载完整列表
-  us:
-    - "AAPL.US"
-    - "MSFT.US"
-    - "GOOGL.US"
-  cn:
-    - "600519.SH"
-    - "000858.SZ"
-    - "601318.SH"
-  # 可指定外部文件路径
-  # hk_file: ""
-  # us_file: ""
-  # cn_file: ""
+  file: "config/watchlist.json"           # 观察列表 JSON 文件（从旧版 config.json 迁移）
 
 storage:
   sqlite_path: "data/newstock.db"       # SQLite 数据库路径

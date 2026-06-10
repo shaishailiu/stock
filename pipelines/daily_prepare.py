@@ -59,14 +59,46 @@ def load_config(config_path: str = "config/config.yaml") -> dict:
 
 
 def load_watchlist(config: dict) -> dict:
-    """加载多市场观察列表"""
+    """加载多市场观察列表（从 config/watchlist.json）"""
     wl = config.get("watchlist", {})
+    file_path = wl.get("file", "")
     result = {"HK": [], "US": [], "CN": []}
-    for market, codes in wl.items():
-        mkt = market.upper()
-        if mkt in result:
-            result[mkt] = codes
+
+    if file_path:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        stocks = data.get("stocks", [])
+        for s in stocks:
+            market = s.get("market", "")
+            symbol = s.get("symbol", "")
+
+            if market == "us":
+                # Tushare 格式: 105.AAPL 已经包含 exchange 前缀
+                result["US"].append(symbol)
+            elif market == "hk":
+                # 补 .HK 后缀: 00700 -> 00700.HK
+                code = symbol if symbol.endswith(".HK") else f"{symbol}.HK"
+                result["HK"].append(code)
+            elif market == "a":
+                # 补 A 股后缀: 600519 -> 600519.SH
+                code = _add_cn_suffix(symbol)
+                result["CN"].append(code)
+            # 忽略 crypto
+
     return result
+
+
+def _add_cn_suffix(code: str) -> str:
+    """给 A 股代码补后缀"""
+    if "." in code:
+        return code
+    if code.startswith("6"):
+        return f"{code}.SH"
+    if code.startswith(("0", "3")):
+        return f"{code}.SZ"
+    if code.startswith(("4", "8")):
+        return f"{code}.BJ"
+    return code
 
 
 def run_daily_prepare(
