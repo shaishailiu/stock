@@ -49,13 +49,13 @@ pip install -r requirements.txt
 
 ### 3. Agent 研究入口（WorkBuddy）
 
-Agent 提示词文件：`agent/research_prompts.py`
+Agent 提示词文件：`agent/research_prompts.md`
 
 ```bash
 python3 main.py show-prompt
 ```
 
-WorkBuddy 会读取系统提示词，并自动调用 Python 工具完成股票研究流程。
+WorkBuddy 会读取系统提示词，并通过 `agent_tools/tool_runner.py` 调用 Python 工具完成股票研究流程。
 
 ### 4. 首次初始化历史数据
 

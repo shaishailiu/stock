@@ -87,8 +87,11 @@ def cmd_daily_prepare(args):
 def cmd_show_prompt(args):
     """输出 Agent 提示词"""
     setup_logging()
-    from agent.research_prompts import AGENT_SYSTEM_PROMPT
-    print(AGENT_SYSTEM_PROMPT)
+    prompt_path = Path("agent/research_prompts.md")
+    if not prompt_path.exists():
+        print(f"Error: prompt file not found: {prompt_path}", file=sys.stderr)
+        sys.exit(1)
+    print(prompt_path.read_text(encoding="utf-8"))
 
 
 def cmd_generate_report(args):
