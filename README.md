@@ -47,19 +47,36 @@ pip install -r requirements.txt
 - 填入 Tushare Token（需 10000 积分档）
 - 配置港股/美股/A 股观察列表
 
-### 3. 首次初始化历史数据
+### 3. 配置 LLM API
+
+编辑 `config/config.yaml` 的 `llm` 部分：
+
+```yaml
+llm:
+  api_key: "YOUR_API_KEY"
+  base_url: "https://api.openai.com/v1"  # 支持 OpenAI / 本地模型 / 中转
+  model: "gpt-4o"
+```
+
+### 4. 首次初始化历史数据
 
 ```bash
 python3 main.py init-history --markets hk,us,cn
 ```
 
-### 4. 每日预处理
+### 5. 每日预处理
 
 ```bash
 python3 main.py daily-prepare --date 2026-06-17
 ```
 
-### 5. 生成日报
+### 6. 启动 Agent 研究流程
+
+```bash
+python3 main.py run-agent --date 2026-06-17
+```
+
+### 7. 生成日报
 
 ```bash
 python3 main.py generate-report --date 2026-06-17

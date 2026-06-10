@@ -4,6 +4,7 @@ CLI 入口
 命令:
   python main.py init-history --markets hk,us,cn
   python main.py daily-prepare --date 2026-06-10
+  python main.py run-agent --date 2026-06-10
   python main.py generate-report --date 2026-06-10
 """
 
@@ -24,6 +25,7 @@ from pipelines.daily_prepare import run_daily_prepare
 from pipelines.init_history import run_init_history
 from storage.db import get_connection, init_db
 from agent_tools.report_tools import generate_report_tool
+from agent.stock_agent import StockResearchAgent
 
 
 def setup_logging():
@@ -80,6 +82,22 @@ def cmd_daily_prepare(args):
         print(f"\nErrors ({len(result['errors'])}):")
         for err in result["errors"]:
             print(f"  - {err}")
+
+
+def cmd_run_agent(args):
+    """启动 Agent 研究流程"""
+    setup_logging()
+    target_date = args.date or str(date.today())
+
+    agent = StockResearchAgent()
+    stats = agent.run(target_date=target_date)
+
+    print(f"\n=== Agent Research Complete ===")
+    print(f"Tool calls: {stats.get('tool_calls', 0)}")
+    print(f"Stocks analyzed: {stats.get('total_analyzed', 0)}")
+    print(f"Rounds: {stats.get('rounds', 0)}")
+    if stats.get("error"):
+        print(f"Error: {stats['error']}")
 
 
 def cmd_generate_report(args):
@@ -145,6 +163,10 @@ def main():
     p_prepare = subparsers.add_parser("daily-prepare", help="每日预处理")
     p_prepare.add_argument("--date", type=str, help="日期 YYYY-MM-DD")
 
+    # run-agent
+    p_agent = subparsers.add_parser("run-agent", help="启动 LLM Agent 研究流程")
+    p_agent.add_argument("--date", type=str, help="日期 YYYY-MM-DD")
+
     # generate-report
     p_report = subparsers.add_parser("generate-report", help="生成日报")
     p_report.add_argument("--date", type=str, help="日期 YYYY-MM-DD")
@@ -155,6 +177,8 @@ def main():
         cmd_init_history(args)
     elif args.command == "daily-prepare":
         cmd_daily_prepare(args)
+    elif args.command == "run-agent":
+        cmd_run_agent(args)
     elif args.command == "generate-report":
         cmd_generate_report(args)
     else:

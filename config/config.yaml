@@ -47,3 +47,10 @@ bottom_signal:
 
 report:
   output_dir: "reports"                 # 报告输出目录
+
+llm:
+  api_key: "YOUR_LLM_API_KEY"           # LLM API Key（OpenAI 兼容）
+  base_url: "https://api.openai.com/v1" # API 地址（支持 OpenAI / 本地 / 中转）
+  model: "gpt-4o"                       # 模型名称
+  temperature: 0.3                      # 温度
+  max_tokens: 4096                      # 最大输出 token
