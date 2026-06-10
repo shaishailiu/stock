@@ -1,0 +1,65 @@
+# 股票 LLM 价值筛选系统 - 主配置
+# 版本：2026-06-10
+
+tushare:
+  token: "YOUR_TUSHARE_TOKEN"          # Tushare API Token
+  timeout: 30                           # 请求超时（秒）
+  max_retries: 3                        # 失败重试次数
+  rate_limit_per_minute: 200            # 每分钟最大请求数
+
+data:
+  earliest_start_date: "2019-01-01"     # 历史数据起始日期
+  markets:
+    hk:
+      enabled: true
+    us:
+      enabled: true
+    cn:
+      enabled: true
+
+watchlist:
+  hk:
+    - "00700.HK"
+    - "09988.HK"
+    - "09999.HK"
+    # 可通过配置或外部文件加载完整列表
+  us:
+    - "AAPL.US"
+    - "MSFT.US"
+    - "GOOGL.US"
+  cn:
+    - "600519.SH"
+    - "000858.SZ"
+    - "601318.SH"
+  # 可指定外部文件路径
+  # hk_file: ""
+  # us_file: ""
+  # cn_file: ""
+
+storage:
+  sqlite_path: "data/newstock.db"       # SQLite 数据库路径
+  raw_cache_root: "data/raw"            # 原始缓存根目录
+  processed_root: "data/processed"      # 清洗后数据根目录
+
+indicators:
+  ma_periods: [20, 60, 120]             # 均线周期
+  rsi_period: 14                        # RSI 周期
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  bollinger:
+    period: 20
+    std: 2
+  bias_period: 120                      # 乖离率周期
+  cycle_high_lookback_days: 180         # 阶段高点回看天数
+  volume_ratio_base_days: 5             # 量比基准天数
+
+bottom_signal:
+  drawdown_threshold: 20                # 回撤阈值
+  rsi_oversold: 30                      # RSI 超卖线
+  rsi_weekly_oversold: 35               # 周线 RSI 超卖线
+  bias_120_threshold: -15               # 120日乖离率阈值
+
+report:
+  output_dir: "reports"                 # 报告输出目录
