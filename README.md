@@ -49,17 +49,13 @@ pip install -r requirements.txt
 
 ### 3. Agent 研究入口（WorkBuddy）
 
-本系统通过 WorkBuddy IDE 的 Agent 功能驱动研究流程。
+Agent 提示词文件：`agent/research_prompts.py`
 
-入口文件：`agent/workbuddy_entry.py`
-
-```python
-from agent.workbuddy_entry import get_system_prompt, get_tool_definitions, execute_tool
-
-prompt = get_system_prompt()     # 系统提示词
-tools = get_tool_definitions()   # 9 个 Function Tools
-result = execute_tool("get_candidate_pool", {})
+```bash
+python3 main.py show-prompt
 ```
+
+WorkBuddy 会读取系统提示词，并自动调用 Python 工具完成股票研究流程。
 
 ### 4. 首次初始化历史数据
 

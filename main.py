@@ -4,7 +4,7 @@ CLI 入口
 命令:
   python main.py init-history --markets hk,us,cn
   python main.py daily-prepare --date 2026-06-10
-  python main.py run-agent --date 2026-06-10
+  python main.py show-prompt
   python main.py generate-report --date 2026-06-10
 """
 
@@ -26,7 +26,6 @@ from pipelines.daily_prepare import run_daily_prepare
 from pipelines.init_history import run_init_history
 from storage.db import get_connection, init_db
 from agent_tools.report_tools import generate_report_tool
-from agent.workbuddy_entry import get_system_prompt, get_tool_definitions, execute_tool
 
 
 def setup_logging():
@@ -85,26 +84,11 @@ def cmd_daily_prepare(args):
             print(f"  - {err}")
 
 
-def cmd_run_agent(args):
-    """输出 Agent 入口信息（供 WorkBuddy 使用）"""
+def cmd_show_prompt(args):
+    """输出 Agent 提示词"""
     setup_logging()
-    target_date = args.date or str(date.today())
-
-    print(f"\n{'='*60}")
-    print(f"  WorkBuddy Agent 入口 - {target_date}")
-    print(f"{'='*60}\n")
-
-    prompt = get_system_prompt()
-    tool_defs = get_tool_definitions()
-
-    print(f"System Prompt: {len(prompt)} 字符")
-    print(f"Tool Definitions: {len(tool_defs)} 个工具")
-    for t in tool_defs:
-        print(f"  - {t['function']['name']}")
-
-    print(f"\n--- 测试工具: get_candidate_pool ---")
-    result = execute_tool("get_candidate_pool", {})
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    from agent.research_prompts import AGENT_SYSTEM_PROMPT
+    print(AGENT_SYSTEM_PROMPT)
 
 
 def cmd_generate_report(args):
@@ -170,9 +154,8 @@ def main():
     p_prepare = subparsers.add_parser("daily-prepare", help="每日预处理")
     p_prepare.add_argument("--date", type=str, help="日期 YYYY-MM-DD")
 
-    # run-agent
-    p_agent = subparsers.add_parser("run-agent", help="启动 LLM Agent 研究流程")
-    p_agent.add_argument("--date", type=str, help="日期 YYYY-MM-DD")
+    # show-prompt
+    p_prompt = subparsers.add_parser("show-prompt", help="输出 Agent 系统提示词")
 
     # generate-report
     p_report = subparsers.add_parser("generate-report", help="生成日报")
@@ -184,8 +167,8 @@ def main():
         cmd_init_history(args)
     elif args.command == "daily-prepare":
         cmd_daily_prepare(args)
-    elif args.command == "run-agent":
-        cmd_run_agent(args)
+    elif args.command == "show-prompt":
+        cmd_show_prompt(args)
     elif args.command == "generate-report":
         cmd_generate_report(args)
     else:
