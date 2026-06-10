@@ -47,15 +47,18 @@ pip install -r requirements.txt
 - 填入 Tushare Token（需 10000 积分档）
 - 配置港股/美股/A 股观察列表
 
-### 3. 配置 LLM API
+### 3. Agent 研究入口（WorkBuddy）
 
-编辑 `config/config.yaml` 的 `llm` 部分：
+本系统通过 WorkBuddy IDE 的 Agent 功能驱动研究流程。
 
-```yaml
-llm:
-  api_key: "YOUR_API_KEY"
-  base_url: "https://api.openai.com/v1"  # 支持 OpenAI / 本地模型 / 中转
-  model: "gpt-4o"
+入口文件：`agent/workbuddy_entry.py`
+
+```python
+from agent.workbuddy_entry import get_system_prompt, get_tool_definitions, execute_tool
+
+prompt = get_system_prompt()     # 系统提示词
+tools = get_tool_definitions()   # 9 个 Function Tools
+result = execute_tool("get_candidate_pool", {})
 ```
 
 ### 4. 首次初始化历史数据
@@ -70,13 +73,7 @@ python3 main.py init-history --markets hk,us,cn
 python3 main.py daily-prepare --date 2026-06-17
 ```
 
-### 6. 启动 Agent 研究流程
-
-```bash
-python3 main.py run-agent --date 2026-06-17
-```
-
-### 7. 生成日报
+### 6. 生成日报
 
 ```bash
 python3 main.py generate-report --date 2026-06-17
