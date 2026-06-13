@@ -60,6 +60,30 @@ def _display_name(code: str, raw_name: str) -> str:
     return raw_name or "?"
 
 
+def _get_google_finance_url(market: str, code: str) -> str:
+    """生成 Google Finance 链接（适配新系统 market/code 格式）。"""
+    if market == "US":
+        ticker = code.replace(".US", "")
+        return f"https://www.google.com/finance/quote/{ticker}:NASDAQ?window=5Y"
+    elif market == "HK":
+        ticker = code.replace(".HK", "")
+        ticker = ticker.zfill(4)  # 补前导零到4位: 700 → 0700
+        return f"https://www.google.com/finance/beta/quote/{ticker}:HKG?window=5Y"
+    elif market == "CN":
+        code_num = code.replace(".SH", "").replace(".SZ", "")
+        exchange = "SHA" if code_num.startswith("6") else "SHE"
+        return f"https://www.google.com/finance/quote/{code_num}:{exchange}?window=5Y"
+    return ""
+
+
+def _make_stock_link(code: str, name: str, market: str) -> str:
+    """生成 Markdown 超链接格式的股票名。"""
+    url = _get_google_finance_url(market, code)
+    if url:
+        return f"[{name}]({url})"
+    return name
+
+
 # sectors 配置缓存
 _SECTORS_CONFIG: dict[str, dict] = {}
 _LLM_SLOTS_RATIO: float = 1.5
@@ -397,8 +421,8 @@ def format_markdown(report: dict[str, Any], push_mode: bool = False) -> str:
             _a(table_sep)
             for stock in shown:
                 code = stock.get("code", "")
-                name = _display_name(code, stock.get("name", "?") or "?")
                 market = stock.get("market", "?")
+                name = _make_stock_link(code, _display_name(code, stock.get("name", "?") or "?"), market)
                 dd = stock.get("drawdown_from_high_pct")
                 dd_str = f"{dd:.1f}%" if dd is not None else "N/A"
                 pe = stock.get("pe_ttm")
@@ -424,8 +448,8 @@ def format_markdown(report: dict[str, Any], push_mode: bool = False) -> str:
             _a(table_sep)
             for stock in stocks_in_sector[:5]:
                 code = stock.get("code", "")
-                name = _display_name(code, stock.get("name", "?") or "?")
                 market = stock.get("market", "?")
+                name = _make_stock_link(code, _display_name(code, stock.get("name", "?") or "?"), market)
                 dd = stock.get("drawdown_from_high_pct")
                 dd_str = f"{dd:.1f}%" if dd is not None else "N/A"
                 pe = stock.get("pe_ttm")
@@ -456,8 +480,8 @@ def format_markdown(report: dict[str, Any], push_mode: bool = False) -> str:
             _a("|------|------|------|------|-----|----------|----------|")
             for stock in new_list:
                 code = stock.get("code", "")
-                name = _display_name(code, stock.get("name", "?") or "?")
                 market = stock.get("market", "?")
+                name = _make_stock_link(code, _display_name(code, stock.get("name", "?") or "?"), market)
                 dd = stock.get("drawdown_from_high_pct")
                 dd_str = f"{dd:.1f}%" if dd is not None else "N/A"
                 rsi = stock.get("rsi_14")
@@ -479,8 +503,8 @@ def format_markdown(report: dict[str, Any], push_mode: bool = False) -> str:
         _a("|------|------|------|------|----------|--------------|----------|")
         for stock in risk_list:
             code = stock.get("code", "")
-            name = _display_name(code, stock.get("name", "?") or "?")
             market = stock.get("market", "?")
+            name = _make_stock_link(code, _display_name(code, stock.get("name", "?") or "?"), market)
             dd = stock.get("drawdown_from_high_pct")
             dd_str = f"{dd:.1f}%" if dd is not None else "N/A"
             risk_flags = stock.get("risk_flags", [])
@@ -504,8 +528,8 @@ def format_markdown(report: dict[str, Any], push_mode: bool = False) -> str:
             _a("|------|------|------|----------|")
             for stock in removed:
                 code = stock.get("code", "")
-                name = _display_name(code, stock.get("name", "?") or "?")
                 market = stock.get("market", "?")
+                name = _make_stock_link(code, _display_name(code, stock.get("name", "?") or "?"), market)
                 dd = stock.get("drawdown_from_high_pct")
                 dd_str = f"{dd:.1f}%" if dd is not None else "N/A"
                 _a(f"| {code} | {name} | {market} | {dd_str} |")
@@ -542,8 +566,8 @@ def _stock_detail_markdown(stock: dict[str, Any]) -> str:
     _a = lines.append
 
     code = stock.get("code", "")
-    name = _display_name(code, stock.get("name", "?") or "?")
     market = stock.get("market", "?")
+    name = _make_stock_link(code, _display_name(code, stock.get("name", "?") or "?"), market)
 
     _a(f"### {code} — {name} [{market}]")
     _a("")
