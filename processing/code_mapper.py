@@ -1,5 +1,5 @@
 """
-股票代码标准化：港股/美股/A 股
+股票代码标准化：港股/美股/A 股（Longbridge 格式）
 """
 
 import logging
@@ -19,15 +19,15 @@ SUFFIX_MAP = {
 
 def normalize_code(raw_code: str) -> dict:
     """
-    将 Tushare 原始代码标准化。
+    将 Longbridge 标准代码标准化。
 
     返回:
       {
-        "code": "00700.HK",       # 系统标准代码
-        "raw_ts_code": "00700.HK",# 原始代码
-        "market": "HK",           # HK / US / CN
-        "exchange": "HKEX",       # 交易所简称
-        "currency": "HKD",        # 默认币种
+        "code": "700.HK",           # 系统标准代码 (Longbridge 格式)
+        "raw_ts_code": "700.HK",    # 兼容字段（等同 code）
+        "market": "HK",             # HK / US / CN
+        "exchange": "HKEX",         # 交易所简称
+        "currency": "HKD",          # 默认币种
       }
     """
     raw_code = raw_code.strip().upper()

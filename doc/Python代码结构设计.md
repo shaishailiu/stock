@@ -102,7 +102,7 @@ newstock/
 │   ├── change_tools.py                # get_change_events
 │   ├── analysis_tools.py              # get_previous_analysis / save_analysis
 │   ├── scoring_tools.py               # map_llm_priority_score / final_priority
-│   └── report_tools.py                # generate_report
+│   └── report_tools.py                # pool_summary
 │
 ├── pipelines/
 │   ├── daily_prepare.py               # 每日预处理主流程
@@ -964,8 +964,8 @@ def save_analysis(code: str, analysis: dict) -> dict:
     """保存 Agent 分析结论。"""
 
 
-def generate_report(date: str | None = None) -> dict:
-    """根据 final_priority 和分析结论生成日报。"""
+def pool_summary(date: str | None = None) -> dict:
+    """生成候选池摘要，按 final_priority 排序。"""
 ```
 
 ---
@@ -1033,7 +1033,7 @@ python main.py init-history --market hk,us,cn
 python main.py daily-prepare --date 2026-06-10
 python main.py rebuild-snapshot --date 2026-06-10
 python main.py run-agent --date 2026-06-10
-python main.py generate-report --date 2026-06-10
+python main.py pool-summary --date 2026-06-10
 ```
 
 其中：
@@ -1042,7 +1042,7 @@ python main.py generate-report --date 2026-06-10
 - `daily-prepare`：每日增量更新和结构化快照生成；
 - `rebuild-snapshot`：用已有 raw cache 重建结构化结果；
 - `run-agent`：启动 Agent 研究流程；
-- `generate-report`：重新生成日报。
+- `pool-summary`：候选池摘要。
 
 ---
 

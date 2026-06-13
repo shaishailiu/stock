@@ -1,11 +1,9 @@
 # 股票 LLM 价值筛选系统 - 主配置
 # 版本：2026-06-10
 
-tushare:
-  token: "YOUR_TUSHARE_TOKEN"          # Tushare API Token
-  timeout: 30                           # 请求超时（秒）
-  max_retries: 3                        # 失败重试次数
-  rate_limit_per_minute: 200            # 每分钟最大请求数
+longbridge:
+  timeout: 30                           # 子进程超时（秒）
+  rate_limit_per_second: 10             # OpenAPI 限流: 每秒 10 次
 
 data:
   earliest_start_date: "2019-01-01"     # 历史数据起始日期

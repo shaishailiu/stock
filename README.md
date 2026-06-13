@@ -69,10 +69,10 @@ python3 main.py init-history --markets hk,us,cn
 python3 main.py daily-prepare --date 2026-06-17
 ```
 
-### 6. 生成日报
+### 6. 候选池摘要
 
 ```bash
-python3 main.py generate-report --date 2026-06-17
+python3 main.py pool-summary --date 2026-06-17
 ```
 
 ## 数据流

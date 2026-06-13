@@ -44,7 +44,7 @@ python3 agent_tools/tool_runner.py --tool <tool_name> -p '<JSON参数>'
 | get_change_events | `{"code":"00700.HK","days":30}` | 获取近期变化事件 |
 | get_previous_analysis | `{"code":"00700.HK"}` | 获取最近一次 Agent 分析结论 |
 | save_analysis | `{"analysis":{...}}` | 保存结构化研究结论 |
-| generate_report | `{"report_date":"2026-06-10"}` | 生成日报数据 |
+| pool_summary | `{"report_date":"2026-06-10"}` | 获取候选池摘要 |
 
 ## 研究流程
 
@@ -57,7 +57,7 @@ python3 agent_tools/tool_runner.py --tool <tool_name> -p '<JSON参数>'
 5. **判定任务**：给每只需要处理的股票确定 task_type
 6. **输出结论**：对需要分析的股票输出结构化研究结论
 7. **保存结果**：执行 `save_analysis` 保存结论
-8. **生成报告**：执行 `generate_report` 生成日报
+8. **查看摘要**：执行 `pool_summary` 查看候选池摘要
 
 ## 任务类型判定
 

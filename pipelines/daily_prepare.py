@@ -1,5 +1,5 @@
 """
-每日预处理主流程
+每日预处理主流程（Longbridge 版）
 
 Agent 启动前执行：
 1. 读取配置和观察列表
@@ -32,7 +32,13 @@ from storage.repositories import (
     mark_fetch_success,
     mark_fetch_failed,
 )
-from data_fetcher.tushare_client import TushareClient
+from data_fetcher.longbridge_client import LongbridgeClient
+from data_fetcher.longbridge_adapter import (
+    to_longbridge_symbol,
+    convert_us_symbol,
+    convert_hk_symbol,
+    convert_cn_symbol,
+)
 from data_fetcher.market_fetcher import MarketFetcher
 from cache.raw_cache import RawCache
 from processing.code_mapper import normalize_code
@@ -59,7 +65,10 @@ def load_config(config_path: str = "config/config.yaml") -> dict:
 
 
 def load_watchlist(config: dict) -> dict:
-    """加载多市场观察列表（从 config/watchlist.json）"""
+    """
+    加载多市场观察列表（从 config/watchlist.json）。
+    符号已为 Longbridge 格式（AAPL.US / 700.HK / 600519.SH）。
+    """
     wl = config.get("watchlist", {})
     file_path = wl.get("file", "")
     result = {"HK": [], "US": [], "CN": []}
@@ -72,33 +81,15 @@ def load_watchlist(config: dict) -> dict:
             market = s.get("market", "")
             symbol = s.get("symbol", "")
 
-            if market == "us":
-                # Tushare 格式: 105.AAPL 已经包含 exchange 前缀
+            if market == "US":
                 result["US"].append(symbol)
-            elif market == "hk":
-                # 补 .HK 后缀: 00700 -> 00700.HK
-                code = symbol if symbol.endswith(".HK") else f"{symbol}.HK"
-                result["HK"].append(code)
-            elif market == "a":
-                # 补 A 股后缀: 600519 -> 600519.SH
-                code = _add_cn_suffix(symbol)
-                result["CN"].append(code)
+            elif market == "HK":
+                result["HK"].append(symbol)
+            elif market == "CN":
+                result["CN"].append(symbol)
             # 忽略 crypto
 
     return result
-
-
-def _add_cn_suffix(code: str) -> str:
-    """给 A 股代码补后缀"""
-    if "." in code:
-        return code
-    if code.startswith("6"):
-        return f"{code}.SH"
-    if code.startswith(("0", "3")):
-        return f"{code}.SZ"
-    if code.startswith(("4", "8")):
-        return f"{code}.BJ"
-    return code
 
 
 def run_daily_prepare(
@@ -111,7 +102,7 @@ def run_daily_prepare(
     返回 prepare_summary
     """
     config = load_config(config_path)
-    tushare_cfg = config["tushare"]
+    longbridge_cfg = config["longbridge"]
     data_cfg = config["data"]
     storage_cfg = config["storage"]
     indicator_cfg = config.get("indicators", {})
@@ -126,11 +117,10 @@ def run_daily_prepare(
     db_path = storage_cfg["sqlite_path"]
     init_db(db_path)
 
-    # 初始化客户端
-    client = TushareClient(
-        token=tushare_cfg["token"],
-        timeout=tushare_cfg.get("timeout", 30),
-        max_retries=tushare_cfg.get("max_retries", 3),
+    # 初始化客户端（Longbridge CLI）
+    client = LongbridgeClient(
+        timeout=longbridge_cfg.get("timeout", 30),
+        rate_limit_per_second=longbridge_cfg.get("rate_limit_per_second", 10),
     )
     cache = RawCache(root=storage_cfg["raw_cache_root"])
     fetcher = MarketFetcher(client, cache)
@@ -261,11 +251,16 @@ def run_daily_prepare(
 
 def _process_hk_stock(code, fetcher, today, earliest_start, indicator_cfg, bottom_cfg, target_date):
     """处理单只港股"""
-    info = normalize_code(code)
     daily = fetcher.fetch_hk_daily(code, today, earliest_start)
 
     if daily.empty:
         return None
+
+    # 估值指标
+    valuation_df = fetcher.fetch_hk_daily_basic(code, today, earliest_start)
+
+    # 静态信息
+    extra = _get_static_info(fetcher, code, "HK")
 
     # 技术指标
     bottom = compute_bottom_signal(
@@ -276,9 +271,12 @@ def _process_hk_stock(code, fetcher, today, earliest_start, indicator_cfg, botto
         bias_120_threshold=bottom_cfg.get("bias_120_threshold", -15),
     )
 
-    snapshot = build_stock_snapshot(code, daily)
+    snapshot = build_stock_snapshot(code, daily, valuation_df=valuation_df, extra=extra)
     snapshot["price_signal"]["alert_level"] = bottom["alert_level"]
     snapshot["price_signal"]["bottom_signal_score"] = bottom["bottom_signal_score"]
+
+    # PE 分位
+    _attach_pe_percentile(fetcher, code, "HK", snapshot)
 
     # 财务数据
     try:
@@ -295,6 +293,19 @@ def _process_hk_stock(code, fetcher, today, earliest_start, indicator_cfg, botto
     except Exception as e:
         logger.warning(f"HK financial fetch failed for {code}: {e}")
 
+    # 资产负债表 & 现金流
+    try:
+        balance_df = fetcher.fetch_hk_balancesheet(code)
+        snapshot["balance_sheet"] = _extract_balance_sheet(balance_df)
+    except Exception as e:
+        logger.warning(f"HK balance sheet fetch failed for {code}: {e}")
+
+    try:
+        cashflow_df = fetcher.fetch_hk_cashflow(code)
+        snapshot["cashflow"] = _extract_cashflow(cashflow_df)
+    except Exception as e:
+        logger.warning(f"HK cashflow fetch failed for {code}: {e}")
+
     signal_card = build_signal_card(code, daily)
     result = {**snapshot, "signal_card": signal_card, "bottom_signal": bottom}
     return result
@@ -302,11 +313,16 @@ def _process_hk_stock(code, fetcher, today, earliest_start, indicator_cfg, botto
 
 def _process_us_stock(code, fetcher, today, earliest_start, indicator_cfg, bottom_cfg, target_date):
     """处理单只美股"""
-    info = normalize_code(code)
     daily = fetcher.fetch_us_daily(code, today, earliest_start)
 
     if daily.empty:
         return None
+
+    # 估值指标
+    valuation_df = fetcher.fetch_us_daily_basic(code, today, earliest_start)
+
+    # 静态信息
+    extra = _get_static_info(fetcher, code, "US")
 
     bottom = compute_bottom_signal(
         daily, price_col="close",
@@ -316,9 +332,33 @@ def _process_us_stock(code, fetcher, today, earliest_start, indicator_cfg, botto
         bias_120_threshold=bottom_cfg.get("bias_120_threshold", -15),
     )
 
-    snapshot = build_stock_snapshot(code, daily)
+    snapshot = build_stock_snapshot(code, daily, valuation_df=valuation_df, extra=extra)
     snapshot["price_signal"]["alert_level"] = bottom["alert_level"]
     snapshot["price_signal"]["bottom_signal_score"] = bottom["bottom_signal_score"]
+
+    # PE 分位
+    _attach_pe_percentile(fetcher, code, "US", snapshot)
+
+    # 财务数据
+    try:
+        income = fetcher.fetch_us_income(code)
+        fina = fetcher.fetch_us_fina_indicator(code)
+        snapshot["fundamental"] = _extract_us_fundamental(income, fina)
+    except Exception as e:
+        logger.warning(f"US financial fetch failed for {code}: {e}")
+
+    # 资产负债表 & 现金流
+    try:
+        balance_df = fetcher.fetch_us_balancesheet(code)
+        snapshot["balance_sheet"] = _extract_balance_sheet(balance_df)
+    except Exception as e:
+        logger.warning(f"US balance sheet fetch failed for {code}: {e}")
+
+    try:
+        cashflow_df = fetcher.fetch_us_cashflow(code)
+        snapshot["cashflow"] = _extract_cashflow(cashflow_df)
+    except Exception as e:
+        logger.warning(f"US cashflow fetch failed for {code}: {e}")
 
     signal_card = build_signal_card(code, daily)
     result = {**snapshot, "signal_card": signal_card, "bottom_signal": bottom}
@@ -327,43 +367,53 @@ def _process_us_stock(code, fetcher, today, earliest_start, indicator_cfg, botto
 
 def _process_cn_stock(code, fetcher, today, earliest_start, indicator_cfg, bottom_cfg, target_date):
     """处理单只 A 股"""
-    info = normalize_code(code)
     daily = fetcher.fetch_cn_daily(code, today, earliest_start)
-    adj = fetcher.fetch_cn_adj_factor(code, today, earliest_start)
     daily_basic = fetcher.fetch_cn_daily_basic(code, today, earliest_start)
 
     if daily.empty:
         return None
 
-    # 如果有复权因子，计算复权价格
-    price_col = "close"
-    if not adj.empty and not daily.empty:
-        daily = _apply_adj_factor(daily, adj)
+    # 静态信息
+    extra = _get_static_info(fetcher, code, "CN")
 
     bottom = compute_bottom_signal(
-        daily, price_col=price_col,
+        daily, price_col="close",
         drawdown_threshold=bottom_cfg.get("drawdown_threshold", 20),
         rsi_oversold=bottom_cfg.get("rsi_oversold", 30),
         rsi_weekly_oversold=bottom_cfg.get("rsi_weekly_oversold", 35),
         bias_120_threshold=bottom_cfg.get("bias_120_threshold", -15),
     )
 
-    snapshot = build_stock_snapshot(code, daily, valuation_df=daily_basic)
+    snapshot = build_stock_snapshot(code, daily, valuation_df=daily_basic, extra=extra)
     snapshot["price_signal"]["alert_level"] = bottom["alert_level"]
     snapshot["price_signal"]["bottom_signal_score"] = bottom["bottom_signal_score"]
+
+    # PE 分位
+    _attach_pe_percentile(fetcher, code, "CN", snapshot)
 
     # 财务数据
     try:
         income = fetcher.fetch_cn_income(code)
-        balancesheet = fetcher.fetch_cn_balancesheet(code)
-        cashflow = fetcher.fetch_cn_cashflow(code)
         fina = fetcher.fetch_cn_fina_indicator(code)
 
         snapshot["fundamental"] = _extract_cn_fundamental(income, fina)
     except Exception as e:
         logger.warning(f"CN financial fetch failed for {code}: {e}")
 
-    # 风险数据
+    # 资产负债表 & 现金流
+    try:
+        balance_df = fetcher.fetch_cn_balancesheet(code)
+        snapshot["balance_sheet"] = _extract_balance_sheet(balance_df)
+    except Exception as e:
+        logger.warning(f"CN balance sheet fetch failed for {code}: {e}")
+
+    try:
+        cashflow_df = fetcher.fetch_cn_cashflow(code)
+        snapshot["cashflow"] = _extract_cashflow(cashflow_df)
+    except Exception as e:
+        logger.warning(f"CN cashflow fetch failed for {code}: {e}")
+
+    # 风险数据（Longbridge 不支持 A 股特有风险数据，返回空标记）
     try:
         risk = _extract_cn_risk(fetcher, code, today, earliest_start)
         snapshot["risk"] = risk
@@ -373,22 +423,6 @@ def _process_cn_stock(code, fetcher, today, earliest_start, indicator_cfg, botto
     signal_card = build_signal_card(code, daily)
     result = {**snapshot, "signal_card": signal_card, "bottom_signal": bottom}
     return result
-
-
-def _apply_adj_factor(daily: pd.DataFrame, adj: pd.DataFrame) -> pd.DataFrame:
-    """将复权因子应用到日线数据"""
-    daily = daily.copy()
-    daily["trade_date"] = daily["trade_date"].astype(str)
-    adj["trade_date"] = adj["trade_date"].astype(str)
-
-    merged = daily.merge(adj[["trade_date", "adj_factor"]], on="trade_date", how="left")
-    if "adj_factor" in merged.columns:
-        latest_factor = merged["adj_factor"].iloc[-1]
-        if latest_factor and latest_factor > 0:
-            for col in ["open", "high", "low", "close"]:
-                if col in merged.columns:
-                    merged[f"adj_{col}"] = merged[col] * merged["adj_factor"] / latest_factor
-    return merged
 
 
 def _extract_hk_fundamental(income: pd.DataFrame, fina: pd.DataFrame) -> dict:
@@ -401,11 +435,13 @@ def _extract_hk_fundamental(income: pd.DataFrame, fina: pd.DataFrame) -> dict:
                        "debt_to_assets", "current_ratio", "quick_ratio"]:
             result[field] = safe_float(latest.get(field))
     # 从利润表提取 TTM
-    if not income.empty and "revenue" in income.columns and "n_income" in income.columns:
+    if not income.empty:
         income_sorted = income.sort_values("end_date") if "end_date" in income.columns else income
         recent_4q = income_sorted.tail(4) if len(income_sorted) >= 4 else income_sorted
-        result["revenue_ttm"] = safe_float(recent_4q["revenue"].sum()) if "revenue" in recent_4q.columns else None
-        result["net_profit_ttm"] = safe_float(recent_4q["n_income"].sum()) if "n_income" in recent_4q.columns else None
+        if "revenue" in recent_4q.columns:
+            result["revenue_ttm"] = safe_float(recent_4q["revenue"].sum())
+        if "n_income" in recent_4q.columns:
+            result["net_profit_ttm"] = safe_float(recent_4q["n_income"].sum())
     return result
 
 
@@ -421,51 +457,93 @@ def _extract_cn_fundamental(income: pd.DataFrame, fina: pd.DataFrame) -> dict:
     if not income.empty:
         income_sorted = income.sort_values("end_date") if "end_date" in income.columns else income
         recent_4q = income_sorted.tail(4) if len(income_sorted) >= 4 else income_sorted
-        result["revenue_ttm"] = safe_float(recent_4q["revenue"].sum()) if "revenue" in recent_4q.columns else None
-        result["net_profit_ttm"] = safe_float(recent_4q["n_income"].sum()) if "n_income" in recent_4q.columns else None
+        if "revenue" in recent_4q.columns:
+            result["revenue_ttm"] = safe_float(recent_4q["revenue"].sum())
+        if "n_income" in recent_4q.columns:
+            result["net_profit_ttm"] = safe_float(recent_4q["n_income"].sum())
     return result
 
 
+def _extract_us_fundamental(income: pd.DataFrame, fina: pd.DataFrame) -> dict:
+    """提取美股财务摘要"""
+    result = {}
+    if not fina.empty:
+        latest = fina.iloc[-1]
+        for field in ["roe", "roa", "grossprofit_margin", "netprofit_margin",
+                       "debt_to_assets", "current_ratio", "quick_ratio"]:
+            result[field] = safe_float(latest.get(field))
+    if not income.empty:
+        income_sorted = income.sort_values("end_date") if "end_date" in income.columns else income
+        recent_4q = income_sorted.tail(4) if len(income_sorted) >= 4 else income_sorted
+        if "revenue" in recent_4q.columns:
+            result["revenue_ttm"] = safe_float(recent_4q["revenue"].sum())
+        if "n_income" in recent_4q.columns:
+            result["net_profit_ttm"] = safe_float(recent_4q["n_income"].sum())
+    return result
+
+
+def _extract_balance_sheet(balance_df: pd.DataFrame) -> dict:
+    """提取资产负债表摘要"""
+    if balance_df is None or balance_df.empty:
+        return {}
+    latest = balance_df.iloc[-1]
+    result = {}
+    for field in ["total_assets", "total_liabs", "total_hldr_eqy_exc_min_int",
+                   "total_cur_assets", "total_cur_liab"]:
+        val = latest.get(field)
+        if val is not None:
+            result[field] = safe_float(val)
+    return result
+
+
+def _extract_cashflow(cashflow_df: pd.DataFrame) -> dict:
+    """提取现金流量表摘要"""
+    if cashflow_df is None or cashflow_df.empty:
+        return {}
+    latest = cashflow_df.iloc[-1]
+    result = {}
+    for field in ["n_cashflow_act", "n_cashflow_inv_act", "n_cashflow_fin_act",
+                   "free_cashflow"]:
+        val = latest.get(field)
+        if val is not None:
+            result[field] = safe_float(val)
+    return result
+
+
+def _get_static_info(fetcher, code: str, market: str) -> dict:
+    """获取股票静态信息（名称、行业等）"""
+    try:
+        info = fetcher.fetch_static_info(code, market)
+        if not info:
+            return {}
+        return {
+            "name": info.get("name") or info.get("name_cn") or info.get("symbol"),
+            "industry": info.get("industry") or info.get("industry_gics"),
+        }
+    except Exception:
+        return {}
+
+
+def _attach_pe_percentile(fetcher, code: str, market: str, snapshot: dict) -> None:
+    """计算 PE 5 年分位并写入 snapshot["valuation"]"""
+    try:
+        pe_pct = fetcher.fetch_pe_percentile(code, market)
+        if pe_pct is not None:
+            snapshot["valuation"]["pe_percentile_5y"] = pe_pct
+    except Exception:
+        pass
+
+
 def _extract_cn_risk(fetcher, code: str, today, earliest_start: str) -> dict:
-    """提取 A 股风险数据"""
-    risk = {"risk_flags": []}
-
-    try:
-        st_df = fetcher.fetch_cn_stock_st(code, today, earliest_start)
-        if not st_df.empty:
-            latest = st_df.iloc[-1]
-            if latest.get("name", "").startswith("ST"):
-                risk["is_st"] = True
-                risk["risk_flags"].append("st_stock")
-    except Exception:
-        pass
-
-    try:
-        pledge = fetcher.fetch_cn_pledge_stat(code)
-        if not pledge.empty:
-            risk["pledge_ratio"] = safe_float(pledge.iloc[-1].get("pledge_ratio"))
-            if risk["pledge_ratio"] and risk["pledge_ratio"] > 50:
-                risk["risk_flags"].append("pledge_ratio_high")
-    except Exception:
-        pass
-
-    try:
-        sf = fetcher.fetch_cn_share_float(code)
-        if not sf.empty:
-            risk["unlock_ratio_next_90d"] = safe_float(sf.iloc[-1].get("float_ratio"))
-    except Exception:
-        pass
-
-    try:
-        audit = fetcher.fetch_cn_fina_audit(code)
-        if not audit.empty and "audit_result" in audit.columns:
-            latest_audit = audit.iloc[-1]["audit_result"]
-            if latest_audit and "无保留" not in str(latest_audit):
-                risk["audit_opinion_abnormal"] = True
-                risk["risk_flags"].append("audit_opinion_abnormal")
-    except Exception:
-        pass
-
+    """
+    提取 A 股风险数据。
+    Longbridge CLI 不支持 A 股特有风险数据（质押、审计、ST 等），
+    返回 data_missing 标记。
+    """
+    risk = {
+        "risk_flags": ["data_missing: risk APIs not available via Longbridge CLI"],
+        "data_missing": True,
+    }
     return risk
 
 
@@ -473,9 +551,8 @@ def _get_previous_trade_date(current_date_str: str) -> Optional[str]:
     """获取上一交易日（简单实现）"""
     dt = datetime.strptime(current_date_str, "%Y-%m-%d")
     from datetime import timedelta
-    # 简单回退 1-3 天
     for offset in range(1, 5):
         prev = dt - timedelta(days=offset)
-        if prev.weekday() < 5:  # 周一到周五
+        if prev.weekday() < 5:
             return prev.strftime("%Y-%m-%d")
     return None

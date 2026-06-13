@@ -23,7 +23,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from agent_tools.analysis_tools import get_previous_analysis_tool, save_analysis_tool
 from agent_tools.candidate_tools import get_candidate_pool_tool, search_stocks_tool
 from agent_tools.change_tools import get_change_events_tool
-from agent_tools.report_tools import generate_report_tool
+from agent_tools.report_tools import pool_summary_tool
 from agent_tools.signal_tools import get_signal_card_tool
 from agent_tools.snapshot_tools import get_stock_snapshot_tool
 from storage.db import get_connection, init_db
@@ -40,7 +40,7 @@ TOOL_MAP: dict[str, ToolFunc] = {
     "get_change_events": get_change_events_tool,
     "get_previous_analysis": get_previous_analysis_tool,
     "save_analysis": save_analysis_tool,
-    "generate_report": generate_report_tool,
+    "pool_summary": pool_summary_tool,
 }
 
 

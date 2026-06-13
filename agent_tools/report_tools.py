@@ -13,9 +13,9 @@ from storage.repositories import get_candidate_pool, get_snapshot, get_previous_
 logger = logging.getLogger("newstock.agent_tools.report")
 
 
-def generate_report_tool(conn: sqlite3.Connection, report_date: Optional[str] = None) -> dict:
+def pool_summary_tool(conn: sqlite3.Connection, report_date: Optional[str] = None) -> dict:
     """
-    生成研究优先级报告。
+    生成候选池摘要。
 
     返回:
       {

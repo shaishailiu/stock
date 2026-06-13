@@ -1,5 +1,5 @@
 """
-首次历史数据初始化
+首次历史数据初始化（Longbridge 版）
 
 加载全量历史数据并首次生成快照。
 """
@@ -13,7 +13,7 @@ import yaml
 
 from pipelines.daily_prepare import load_config, load_watchlist
 from storage.db import init_db
-from data_fetcher.tushare_client import TushareClient
+from data_fetcher.longbridge_client import LongbridgeClient
 from data_fetcher.market_fetcher import MarketFetcher
 from cache.raw_cache import RawCache
 
@@ -35,7 +35,7 @@ def run_init_history(
       初始化结果摘要
     """
     config = load_config(config_path)
-    tushare_cfg = config["tushare"]
+    longbridge_cfg = config["longbridge"]
     data_cfg = config["data"]
     storage_cfg = config["storage"]
 
@@ -45,10 +45,9 @@ def run_init_history(
     # 初始化数据库
     init_db(storage_cfg["sqlite_path"])
 
-    client = TushareClient(
-        token=tushare_cfg["token"],
-        timeout=tushare_cfg.get("timeout", 30),
-        max_retries=tushare_cfg.get("max_retries", 3),
+    client = LongbridgeClient(
+        timeout=longbridge_cfg.get("timeout", 30),
+        rate_limit_per_second=longbridge_cfg.get("rate_limit_per_second", 10),
     )
     cache = RawCache(root=storage_cfg["raw_cache_root"])
     fetcher = MarketFetcher(client, cache)
@@ -71,18 +70,20 @@ def run_init_history(
             try:
                 if market_key == "hk":
                     fetcher.fetch_hk_daily(code, today, earliest_start)
+                    fetcher.fetch_hk_daily_basic(code, today, earliest_start)
                     fetcher.fetch_hk_income(code)
                     fetcher.fetch_hk_balancesheet(code)
                     fetcher.fetch_hk_cashflow(code)
                     fetcher.fetch_hk_fina_indicator(code)
                 elif market_key == "us":
                     fetcher.fetch_us_daily(code, today, earliest_start)
+                    fetcher.fetch_us_daily_basic(code, today, earliest_start)
                     fetcher.fetch_us_income(code)
                     fetcher.fetch_us_balancesheet(code)
                     fetcher.fetch_us_cashflow(code)
+                    fetcher.fetch_us_fina_indicator(code)
                 elif market_key == "cn":
                     fetcher.fetch_cn_daily(code, today, earliest_start)
-                    fetcher.fetch_cn_adj_factor(code, today, earliest_start)
                     fetcher.fetch_cn_daily_basic(code, today, earliest_start)
                     fetcher.fetch_cn_income(code)
                     fetcher.fetch_cn_balancesheet(code)

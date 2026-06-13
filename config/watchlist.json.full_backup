@@ -1,0 +1,2219 @@
+{
+  "stocks": [
+    {
+      "name": "AAPL（苹果）",
+      "market": "US",
+      "symbol": "AAPL.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "MSFT（微软）",
+      "market": "US",
+      "symbol": "MSFT.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "GOOGL（谷歌）",
+      "market": "US",
+      "symbol": "GOOGL.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "AMZN（亚马逊）",
+      "market": "US",
+      "symbol": "AMZN.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "NVDA（英伟达）",
+      "market": "US",
+      "symbol": "NVDA.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "META（Meta）",
+      "market": "US",
+      "symbol": "META.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "TSLA（特斯拉）",
+      "market": "US",
+      "symbol": "TSLA.US",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "AMD（AMD）",
+      "market": "US",
+      "symbol": "AMD.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "AVGO（博通）",
+      "market": "US",
+      "symbol": "AVGO.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "TSM（台积电）",
+      "market": "US",
+      "symbol": "TSM.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "ARM（ARM）",
+      "market": "US",
+      "symbol": "ARM.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "QCOM（高通）",
+      "market": "US",
+      "symbol": "QCOM.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "ADBE（Adobe）",
+      "market": "US",
+      "symbol": "ADBE.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "INTC（英特尔）",
+      "market": "US",
+      "symbol": "INTC.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "NFLX（奈飞）",
+      "market": "US",
+      "symbol": "NFLX.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "TEAM（Atlassian）",
+      "market": "US",
+      "symbol": "TEAM.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "NET（Cloudflare）",
+      "market": "US",
+      "symbol": "NET.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "MDB（MongoDB）",
+      "market": "US",
+      "symbol": "MDB.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "ORCL（甲骨文）",
+      "market": "US",
+      "symbol": "ORCL.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "UBER（优步）",
+      "market": "US",
+      "symbol": "UBER.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "SPOT（Spotify）",
+      "market": "US",
+      "symbol": "SPOT.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "MU（美光）",
+      "market": "US",
+      "symbol": "MU.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "EA（艺电）",
+      "market": "US",
+      "symbol": "EA.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "SONY（索尼）",
+      "market": "US",
+      "symbol": "SONY.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "DELL（戴尔）",
+      "market": "US",
+      "symbol": "DELL.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "WDC（西部数据）",
+      "market": "US",
+      "symbol": "WDC.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "STX（希捷）",
+      "market": "US",
+      "symbol": "STX.US",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "NKE（耐克）",
+      "market": "US",
+      "symbol": "NKE.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "SBUX（星巴克）",
+      "market": "US",
+      "symbol": "SBUX.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "MCD（麦当劳）",
+      "market": "US",
+      "symbol": "MCD.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "KO（可口可乐）",
+      "market": "US",
+      "symbol": "KO.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "PEP（百事可乐）",
+      "market": "US",
+      "symbol": "PEP.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "PG（宝洁）",
+      "market": "US",
+      "symbol": "PG.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "JNJ（强生）",
+      "market": "US",
+      "symbol": "JNJ.US",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "COST（开市客）",
+      "market": "US",
+      "symbol": "COST.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "DIS（迪士尼）",
+      "market": "US",
+      "symbol": "DIS.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "ABNB（爱彼迎）",
+      "market": "US",
+      "symbol": "ABNB.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "BKNG（Booking）",
+      "market": "US",
+      "symbol": "BKNG.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "LULU（Lululemon）",
+      "market": "US",
+      "symbol": "LULU.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "ADDYY（阿迪达斯）",
+      "market": "US",
+      "symbol": "ADDYY.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "PFE（辉瑞）",
+      "market": "US",
+      "symbol": "PFE.US",
+      "stock_type": "non_cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "PYPL（PayPal）",
+      "market": "US",
+      "symbol": "PYPL.US",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "V（Visa）",
+      "market": "US",
+      "symbol": "V.US",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "MA（万事达）",
+      "market": "US",
+      "symbol": "MA.US",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "ZM（Zoom）",
+      "market": "US",
+      "symbol": "ZM.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "SNAP（Snapchat）",
+      "market": "US",
+      "symbol": "SNAP.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "YUM（百胜集团）",
+      "market": "US",
+      "symbol": "YUM.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "MDLZ（亿滋国际）",
+      "market": "US",
+      "symbol": "MDLZ.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "MAR（万豪国际）",
+      "market": "US",
+      "symbol": "MAR.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "HLT（希尔顿）",
+      "market": "US",
+      "symbol": "HLT.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "WBD（华纳兄弟探索）",
+      "market": "US",
+      "symbol": "WBD.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "CMCSA（康卡斯特）",
+      "market": "US",
+      "symbol": "CMCSA.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "UAA（安德玛）",
+      "market": "US",
+      "symbol": "UAA.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "DECK（Deckers）",
+      "market": "US",
+      "symbol": "DECK.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "CL（高露洁）",
+      "market": "US",
+      "symbol": "CL.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "TPR（Tapestry）",
+      "market": "US",
+      "symbol": "TPR.US",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "QSR（汉堡王母公司）",
+      "market": "US",
+      "symbol": "QSR.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "GIS（通用磨坊）",
+      "market": "US",
+      "symbol": "GIS.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "EBAY（eBay）",
+      "market": "US",
+      "symbol": "EBAY.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "FDX（联邦快递）",
+      "market": "US",
+      "symbol": "FDX.US",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "UPS（联合包裹）",
+      "market": "US",
+      "symbol": "UPS.US",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "HPQ（惠普）",
+      "market": "US",
+      "symbol": "HPQ.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "LOGI（罗技）",
+      "market": "US",
+      "symbol": "LOGI.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "CRSR（海盗船）",
+      "market": "US",
+      "symbol": "CRSR.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "WMT（沃尔玛）",
+      "market": "US",
+      "symbol": "WMT.US",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "DE（约翰迪尔）",
+      "market": "US",
+      "symbol": "DE.US",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "CAT（卡特彼勒）",
+      "market": "US",
+      "symbol": "CAT.US",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "UNH（联合健康）",
+      "market": "US",
+      "symbol": "UNH.US",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600519（贵州茅台）",
+      "market": "CN",
+      "symbol": "600519.SH",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "000858（五粮液）",
+      "market": "CN",
+      "symbol": "000858.SZ",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "600887（伊利股份）",
+      "market": "CN",
+      "symbol": "600887.SH",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "000651（格力电器）",
+      "market": "CN",
+      "symbol": "000651.SZ",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "000333（美的集团）",
+      "market": "CN",
+      "symbol": "000333.SZ",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "300750（宁德时代）",
+      "market": "CN",
+      "symbol": "300750.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "002466（天齐锂业）",
+      "market": "CN",
+      "symbol": "002466.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "002460（赣锋锂业）",
+      "market": "CN",
+      "symbol": "002460.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "002594（比亚迪）",
+      "market": "CN",
+      "symbol": "002594.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "601012（隆基绿能）",
+      "market": "CN",
+      "symbol": "601012.SH",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "600438（通威股份）",
+      "market": "CN",
+      "symbol": "600438.SH",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "300274（阳光电源）",
+      "market": "CN",
+      "symbol": "300274.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "600011（华能国际）",
+      "market": "CN",
+      "symbol": "600011.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600900（长江电力）",
+      "market": "CN",
+      "symbol": "600900.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600036（招商银行）",
+      "market": "CN",
+      "symbol": "600036.SH",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "601318（中国平安）",
+      "market": "CN",
+      "symbol": "601318.SH",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "600030（中信证券）",
+      "market": "CN",
+      "symbol": "600030.SH",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "601166（兴业银行）",
+      "market": "CN",
+      "symbol": "601166.SH",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "002415（海康威视）",
+      "market": "CN",
+      "symbol": "002415.SZ",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "603501（韦尔股份）",
+      "market": "CN",
+      "symbol": "603501.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600276（恒瑞医药）",
+      "market": "CN",
+      "symbol": "600276.SH",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "300760（迈瑞医疗）",
+      "market": "CN",
+      "symbol": "300760.SZ",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "000538（云南白药）",
+      "market": "CN",
+      "symbol": "000538.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "002602（世纪华通）",
+      "market": "CN",
+      "symbol": "002602.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "002714（牧原股份）",
+      "market": "CN",
+      "symbol": "002714.SZ",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "300498（温氏股份）",
+      "market": "CN",
+      "symbol": "300498.SZ",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "300059（东方财富）",
+      "market": "CN",
+      "symbol": "300059.SZ",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "600690（海尔智家）",
+      "market": "CN",
+      "symbol": "600690.SH",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "600760（中航沈飞）",
+      "market": "CN",
+      "symbol": "600760.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002179（中航光电）",
+      "market": "CN",
+      "symbol": "002179.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002371（北方华创）",
+      "market": "CN",
+      "symbol": "002371.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "000002（万科A）",
+      "market": "CN",
+      "symbol": "000002.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600048（保利发展）",
+      "market": "CN",
+      "symbol": "600048.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600019（宝钢股份）",
+      "market": "CN",
+      "symbol": "600019.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601899（紫金矿业）",
+      "market": "CN",
+      "symbol": "601899.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601088（中国神华）",
+      "market": "CN",
+      "symbol": "601088.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601888（中国中免）",
+      "market": "CN",
+      "symbol": "601888.SH",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "002352（顺丰控股）",
+      "market": "CN",
+      "symbol": "002352.SZ",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "688111（金山办公）",
+      "market": "CN",
+      "symbol": "688111.SH",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "603288（海天味业）",
+      "market": "CN",
+      "symbol": "603288.SH",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "600585（海螺水泥）",
+      "market": "CN",
+      "symbol": "600585.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600938（中国海油）",
+      "market": "CN",
+      "symbol": "600938.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "300124（汇川技术）",
+      "market": "CN",
+      "symbol": "300124.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "00700（腾讯）",
+      "market": "HK",
+      "symbol": "700.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "09988（阿里巴巴）",
+      "market": "HK",
+      "symbol": "9988.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "09888（百度）",
+      "market": "HK",
+      "symbol": "9888.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "09618（京东）",
+      "market": "HK",
+      "symbol": "9618.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "03690（美团）",
+      "market": "HK",
+      "symbol": "3690.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "09999（网易）",
+      "market": "HK",
+      "symbol": "9999.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "01024（快手）",
+      "market": "HK",
+      "symbol": "1024.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "01810（小米）",
+      "market": "HK",
+      "symbol": "1810.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "00981（中芯国际）",
+      "market": "HK",
+      "symbol": "981.HK",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "09866（蔚来）",
+      "market": "HK",
+      "symbol": "9866.HK",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "09868（小鹏汽车）",
+      "market": "HK",
+      "symbol": "9868.HK",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "02015（理想汽车）",
+      "market": "HK",
+      "symbol": "2015.HK",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "09626（哔哩哔哩）",
+      "market": "HK",
+      "symbol": "9626.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "01211（比亚迪）",
+      "market": "HK",
+      "symbol": "1211.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "002594",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "02020（安踏体育）",
+      "market": "HK",
+      "symbol": "2020.HK",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "06618（京东健康）",
+      "market": "HK",
+      "symbol": "6618.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "09961（携程集团）",
+      "market": "HK",
+      "symbol": "9961.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "02269（药明生物）",
+      "market": "HK",
+      "symbol": "2269.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "09901（新东方在线）",
+      "market": "HK",
+      "symbol": "9901.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "600941（中国移动）",
+      "market": "CN",
+      "symbol": "600941.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601398（工商银行）",
+      "market": "CN",
+      "symbol": "601398.SH",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "00291（华润啤酒）",
+      "market": "HK",
+      "symbol": "291.HK",
+      "stock_type": "non_cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "02331（李宁）",
+      "market": "HK",
+      "symbol": "2331.HK",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "01347（华虹半导体）",
+      "market": "HK",
+      "symbol": "1347.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "688347",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "02380（中国电力）",
+      "market": "HK",
+      "symbol": "2380.HK",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "BEKE（贝壳）",
+      "market": "US",
+      "symbol": "BEKE.US",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "PDD（拼多多）",
+      "market": "US",
+      "symbol": "PDD.US",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "FUTU（富途）",
+      "market": "US",
+      "symbol": "FUTU.US",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "TME（腾讯音乐）",
+      "market": "US",
+      "symbol": "TME.US",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "BTC/USD",
+      "market": "crypto",
+      "symbol": "BTC",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "06869（长飞光纤光缆）",
+      "market": "HK",
+      "symbol": "6869.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "601869",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "00020（商汤－Ｗ）",
+      "market": "HK",
+      "symbol": "20.HK",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "02318（中国平安）",
+      "market": "HK",
+      "symbol": "2318.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "601318",
+      "sector": "finance"
+    },
+    {
+      "name": "00005（汇丰控股）",
+      "market": "HK",
+      "symbol": "5.HK",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "00100（MINIMAX-WP）",
+      "market": "HK",
+      "symbol": "100.HK",
+      "stock_type": "unclassified",
+      "sector": "tech"
+    },
+    {
+      "name": "00388（香港交易所）",
+      "market": "HK",
+      "symbol": "388.HK",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "00939（建设银行）",
+      "market": "HK",
+      "symbol": "939.HK",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "00016（新鸿基地产）",
+      "market": "HK",
+      "symbol": "16.HK",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "01299（友邦保险）",
+      "market": "HK",
+      "symbol": "1299.HK",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "02899（紫金矿业）",
+      "market": "HK",
+      "symbol": "2899.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "601899",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02513（智谱）",
+      "market": "HK",
+      "symbol": "2513.HK",
+      "stock_type": "unclassified",
+      "sector": "tech"
+    },
+    {
+      "name": "02525（禾赛－Ｗ）",
+      "market": "HK",
+      "symbol": "2525.HK",
+      "stock_type": "unclassified",
+      "sector": "tech"
+    },
+    {
+      "name": "09992（泡泡玛特）",
+      "market": "HK",
+      "symbol": "9992.HK",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "03750（宁德时代）",
+      "market": "HK",
+      "symbol": "3750.HK",
+      "stock_type": "unclassified",
+      "duplicate_of": "300750",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "02026（小马智行－Ｗ）",
+      "market": "HK",
+      "symbol": "2026.HK",
+      "stock_type": "unclassified",
+      "sector": "tech"
+    },
+    {
+      "name": "01398（工商银行）",
+      "market": "HK",
+      "symbol": "1398.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "601398",
+      "sector": "finance"
+    },
+    {
+      "name": "00883（中国海洋石油）",
+      "market": "HK",
+      "symbol": "883.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "600938",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02628（中国人寿）",
+      "market": "HK",
+      "symbol": "2628.HK",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "03993（洛阳钼业）",
+      "market": "HK",
+      "symbol": "3993.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "603993",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "01378（中国宏桥）",
+      "market": "HK",
+      "symbol": "1378.HK",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "00857（中国石油股份）",
+      "market": "HK",
+      "symbol": "857.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "601857",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "00669（创科实业）",
+      "market": "HK",
+      "symbol": "669.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "03988（中国银行）",
+      "market": "HK",
+      "symbol": "3988.HK",
+      "stock_type": "non_cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "06160（百济神州）",
+      "market": "HK",
+      "symbol": "6160.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "00175（吉利汽车）",
+      "market": "HK",
+      "symbol": "175.HK",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "01801（信达生物）",
+      "market": "HK",
+      "symbol": "1801.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "00992（联想集团）",
+      "market": "HK",
+      "symbol": "992.HK",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "00941（中国移动）",
+      "market": "HK",
+      "symbol": "941.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "600941",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "01093（石药集团）",
+      "market": "HK",
+      "symbol": "1093.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "09987（百胜中国）",
+      "market": "HK",
+      "symbol": "9987.HK",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "300308（中际旭创）",
+      "market": "CN",
+      "symbol": "300308.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300502（新易盛）",
+      "market": "CN",
+      "symbol": "300502.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300476（胜宏科技）",
+      "market": "CN",
+      "symbol": "300476.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300394（天孚通信）",
+      "market": "CN",
+      "symbol": "300394.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "688256（寒武纪）",
+      "market": "CN",
+      "symbol": "688256.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600111（北方稀土）",
+      "market": "CN",
+      "symbol": "600111.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600010（包钢股份）",
+      "market": "CN",
+      "symbol": "600010.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "300442（润泽科技）",
+      "market": "CN",
+      "symbol": "300442.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "688041（海光信息）",
+      "market": "CN",
+      "symbol": "688041.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "002463（沪电股份）",
+      "market": "CN",
+      "symbol": "002463.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "601138（工业富联）",
+      "market": "CN",
+      "symbol": "601138.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600487（亨通光电）",
+      "market": "CN",
+      "symbol": "600487.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "000988（华工科技）",
+      "market": "CN",
+      "symbol": "000988.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300395（菲利华）",
+      "market": "CN",
+      "symbol": "300395.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "603993（洛阳钼业）",
+      "market": "CN",
+      "symbol": "603993.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600522（中天科技）",
+      "market": "CN",
+      "symbol": "600522.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300418（昆仑万维）",
+      "market": "CN",
+      "symbol": "300418.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "600089（特变电工）",
+      "market": "CN",
+      "symbol": "600089.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "300058（蓝色光标）",
+      "market": "CN",
+      "symbol": "300058.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "600498（烽火通信）",
+      "market": "CN",
+      "symbol": "600498.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "002202（金风科技）",
+      "market": "CN",
+      "symbol": "002202.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "300136（信维通信）",
+      "market": "CN",
+      "symbol": "300136.SZ",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "002195（岩山科技）",
+      "market": "CN",
+      "symbol": "002195.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "002384（东山精密）",
+      "market": "CN",
+      "symbol": "002384.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "603986（兆易创新）",
+      "market": "CN",
+      "symbol": "603986.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "688521（芯原股份）",
+      "market": "CN",
+      "symbol": "688521.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "002475（立讯精密）",
+      "market": "CN",
+      "symbol": "002475.SZ",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "000657（中钨高新）",
+      "market": "CN",
+      "symbol": "000657.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002156（通富微电）",
+      "market": "CN",
+      "symbol": "002156.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600549（厦门钨业）",
+      "market": "CN",
+      "symbol": "600549.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002008（大族激光）",
+      "market": "CN",
+      "symbol": "002008.SZ",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "600879（航天电子）",
+      "market": "CN",
+      "symbol": "600879.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600875（东方电气）",
+      "market": "CN",
+      "symbol": "600875.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "688343（云天励飞）",
+      "market": "CN",
+      "symbol": "688343.SH",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "000630（铜陵有色）",
+      "market": "CN",
+      "symbol": "000630.SZ",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600118（中国卫星）",
+      "market": "CN",
+      "symbol": "600118.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "00386（中国石油化工股份）",
+      "market": "HK",
+      "symbol": "386.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "600028",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02600（中国铝业）",
+      "market": "HK",
+      "symbol": "2600.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "601600",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "09660（地平线机器人－Ｗ）",
+      "market": "HK",
+      "symbol": "9660.HK",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "01919（中远海控）",
+      "market": "HK",
+      "symbol": "1919.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "601919",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02228（晶泰控股）",
+      "market": "HK",
+      "symbol": "2228.HK",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "09880（优必选）",
+      "market": "HK",
+      "symbol": "9880.HK",
+      "stock_type": "non_cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "601857（中国石油）",
+      "market": "CN",
+      "symbol": "601857.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600028（中国石化）",
+      "market": "CN",
+      "symbol": "600028.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "301308（江波龙）",
+      "market": "CN",
+      "symbol": "301308.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "688525（佰维存储）",
+      "market": "CN",
+      "symbol": "688525.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "601179（中国西电）",
+      "market": "CN",
+      "symbol": "601179.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601600（中国铝业）",
+      "market": "CN",
+      "symbol": "601600.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600026（中远海能）",
+      "market": "CN",
+      "symbol": "600026.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "688008（澜起科技）",
+      "market": "CN",
+      "symbol": "688008.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "601919（中远海控）",
+      "market": "CN",
+      "symbol": "601919.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "001309（德明利）",
+      "market": "CN",
+      "symbol": "001309.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600989（宝丰能源）",
+      "market": "CN",
+      "symbol": "600989.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601872（招商轮船）",
+      "market": "CN",
+      "symbol": "601872.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600150（中国船舶）",
+      "market": "CN",
+      "symbol": "600150.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600871（石化油服）",
+      "market": "CN",
+      "symbol": "600871.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02338（潍柴动力）",
+      "market": "HK",
+      "symbol": "2338.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "000338",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "09926（康方生物）",
+      "market": "HK",
+      "symbol": "9926.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "01208（五矿资源）",
+      "market": "HK",
+      "symbol": "1208.HK",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "06181（老铺黄金）",
+      "market": "HK",
+      "symbol": "6181.HK",
+      "stock_type": "cyclical",
+      "sector": "consumer"
+    },
+    {
+      "name": "002281（光迅科技）",
+      "market": "CN",
+      "symbol": "002281.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600584（长电科技）",
+      "market": "CN",
+      "symbol": "600584.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600406（国电南瑞）",
+      "market": "CN",
+      "symbol": "600406.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02618（京东物流）",
+      "market": "HK",
+      "symbol": "2618.HK",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "01171（兖矿能源）",
+      "market": "HK",
+      "symbol": "1171.HK",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "01530（三生制药）",
+      "market": "HK",
+      "symbol": "1530.HK",
+      "stock_type": "cyclical",
+      "sector": "healthcare"
+    },
+    {
+      "name": "300475（香农芯创）",
+      "market": "CN",
+      "symbol": "300475.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "600703（三安光电）",
+      "market": "CN",
+      "symbol": "600703.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "601868（中国能建）",
+      "market": "CN",
+      "symbol": "601868.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601727（上海电气）",
+      "market": "CN",
+      "symbol": "601727.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "000338（潍柴动力）",
+      "market": "CN",
+      "symbol": "000338.SZ",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "01088（中国神华）",
+      "market": "HK",
+      "symbol": "1088.HK",
+      "stock_type": "non_cyclical",
+      "duplicate_of": "601088",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "03858（佳鑫国际资源）",
+      "market": "HK",
+      "symbol": "3858.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "03968（招商银行）",
+      "market": "HK",
+      "symbol": "3968.HK",
+      "stock_type": "cyclical",
+      "duplicate_of": "600036",
+      "sector": "finance"
+    },
+    {
+      "name": "600673（东阳光）",
+      "market": "CN",
+      "symbol": "600673.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600309（万华化学）",
+      "market": "CN",
+      "symbol": "600309.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002648（卫星化学）",
+      "market": "CN",
+      "symbol": "002648.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "600096（云天化）",
+      "market": "CN",
+      "symbol": "600096.SH",
+      "stock_type": "cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002709（天赐材料）",
+      "market": "CN",
+      "symbol": "002709.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "002335（科华数据）",
+      "market": "CN",
+      "symbol": "002335.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300014（亿纬锂能）",
+      "market": "CN",
+      "symbol": "300014.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "601669（中国电建）",
+      "market": "CN",
+      "symbol": "601669.SH",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "601869（长飞光纤）",
+      "market": "CN",
+      "symbol": "601869.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "603083（剑桥科技）",
+      "market": "CN",
+      "symbol": "603083.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "02259（紫金黄金国际）",
+      "market": "HK",
+      "symbol": "2259.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "01898（中煤能源）",
+      "market": "HK",
+      "symbol": "1898.HK",
+      "stock_type": "non_cyclical",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "603019（中科曙光）",
+      "market": "CN",
+      "symbol": "603019.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "000938（紫光股份）",
+      "market": "CN",
+      "symbol": "000938.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "00293（国泰航空）",
+      "market": "HK",
+      "symbol": "293.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "000792（盐湖股份）",
+      "market": "CN",
+      "symbol": "000792.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "600930（华电新能）",
+      "market": "CN",
+      "symbol": "600930.SH",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02099（中国黄金国际）",
+      "market": "HK",
+      "symbol": "2099.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "00358（江西铜业股份）",
+      "market": "HK",
+      "symbol": "358.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "002837（英维克）",
+      "market": "CN",
+      "symbol": "002837.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300223（北京君正）",
+      "market": "CN",
+      "symbol": "300223.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "603799（华友钴业）",
+      "market": "CN",
+      "symbol": "603799.SH",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "688347（华虹公司）",
+      "market": "CN",
+      "symbol": "688347.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "09863（零跑汽车）",
+      "market": "HK",
+      "symbol": "9863.HK",
+      "stock_type": "unclassified",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "01888（建滔积层板）",
+      "market": "HK",
+      "symbol": "1888.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "000617（中油资本）",
+      "market": "CN",
+      "symbol": "000617.SZ",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "300033（同花顺）",
+      "market": "CN",
+      "symbol": "300033.SZ",
+      "stock_type": "cyclical",
+      "sector": "finance"
+    },
+    {
+      "name": "06088（FIT HON TENG）",
+      "market": "HK",
+      "symbol": "6088.HK",
+      "stock_type": "unclassified",
+      "sector": "tech"
+    },
+    {
+      "name": "06969（思摩尔国际）",
+      "market": "HK",
+      "symbol": "6969.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "02057（中通快递－Ｗ）",
+      "market": "HK",
+      "symbol": "2057.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "09698（万国数据－ＳＷ）",
+      "market": "HK",
+      "symbol": "9698.HK",
+      "stock_type": "unclassified",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300672（国科微）",
+      "market": "CN",
+      "symbol": "300672.SZ",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "03939（万国黄金集团）",
+      "market": "HK",
+      "symbol": "3939.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "603881（数据港）",
+      "market": "CN",
+      "symbol": "603881.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "00001（长和）",
+      "market": "HK",
+      "symbol": "1.HK",
+      "stock_type": "unclassified",
+      "sector": "resources_industrial"
+    },
+    {
+      "name": "300857（协创数据）",
+      "market": "CN",
+      "symbol": "300857.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300724（捷佳伟创）",
+      "market": "CN",
+      "symbol": "300724.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "688498（源杰科技）",
+      "market": "CN",
+      "symbol": "688498.SH",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300763（锦浪科技）",
+      "market": "CN",
+      "symbol": "300763.SZ",
+      "stock_type": "cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "300620（光库科技）",
+      "market": "CN",
+      "symbol": "300620.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300782（卓胜微）",
+      "market": "CN",
+      "symbol": "300782.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "688048（长光华芯）",
+      "market": "CN",
+      "symbol": "688048.SH",
+      "stock_type": "cyclical",
+      "sector": "chip_ai"
+    },
+    {
+      "name": "300751（迈为股份）",
+      "market": "CN",
+      "symbol": "300751.SZ",
+      "stock_type": "non_cyclical",
+      "sector": "auto_energy"
+    },
+    {
+      "name": "300251（光线传媒）",
+      "market": "CN",
+      "symbol": "300251.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "688775（影石创新）",
+      "market": "CN",
+      "symbol": "688775.SH",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "301606（绿联科技）",
+      "market": "CN",
+      "symbol": "301606.SZ",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "300533（冰川网络）",
+      "market": "CN",
+      "symbol": "300533.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "002517（恺英网络）",
+      "market": "CN",
+      "symbol": "002517.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "002558（巨人网络）",
+      "market": "CN",
+      "symbol": "002558.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "002624（完美世界）",
+      "market": "CN",
+      "symbol": "002624.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "603444（吉比特）",
+      "market": "CN",
+      "symbol": "603444.SH",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "002555（三七互娱）",
+      "market": "CN",
+      "symbol": "002555.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "002174（游族网络）",
+      "market": "CN",
+      "symbol": "002174.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "300315（掌趣科技）",
+      "market": "CN",
+      "symbol": "300315.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "603258（电魂网络）",
+      "market": "CN",
+      "symbol": "603258.SH",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "00302（中手游）",
+      "market": "HK",
+      "symbol": "302.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "01119（创梦天地）",
+      "market": "HK",
+      "symbol": "1119.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "00799（IGG）",
+      "market": "HK",
+      "symbol": "799.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "00777（网龙）",
+      "market": "HK",
+      "symbol": "777.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "02400（心动公司）",
+      "market": "HK",
+      "symbol": "2400.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "06820（友谊时光）",
+      "market": "HK",
+      "symbol": "6820.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "06633（青瓷游戏）",
+      "market": "HK",
+      "symbol": "6633.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "02660（禅游科技）",
+      "market": "HK",
+      "symbol": "2660.HK",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "300002（神州泰岳）",
+      "market": "CN",
+      "symbol": "300002.SZ",
+      "stock_type": "cyclical",
+      "sector": "gaming"
+    },
+    {
+      "name": "300866（安克创新）",
+      "market": "CN",
+      "symbol": "300866.SZ",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "688169（石头科技）",
+      "market": "CN",
+      "symbol": "688169.SH",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "603486（科沃斯）",
+      "market": "CN",
+      "symbol": "603486.SH",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "689009（九号公司）",
+      "market": "CN",
+      "symbol": "689009.SH",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    },
+    {
+      "name": "688696（极米科技）",
+      "market": "CN",
+      "symbol": "688696.SH",
+      "stock_type": "cyclical",
+      "sector": "tech"
+    }
+  ]
+}
