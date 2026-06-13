@@ -9,6 +9,7 @@ Agent 工具命令行执行入口。
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import logging
 import sys
@@ -21,9 +22,14 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from agent_tools.analysis_tools import get_previous_analysis_tool, save_analysis_tool
-from agent_tools.candidate_tools import get_candidate_pool_tool, search_stocks_tool
+from agent_tools.candidate_tools import (
+    get_candidate_pool_tool,
+    get_llm_analysis_queue_tool,
+    search_stocks_tool,
+)
 from agent_tools.change_tools import get_change_events_tool
-from agent_tools.report_tools import pool_summary_tool
+from agent_tools.report_tools import generate_report_tool, pool_summary_tool
+from agent_tools.push_tools import push_report_tool
 from agent_tools.signal_tools import get_signal_card_tool
 from agent_tools.snapshot_tools import get_stock_snapshot_tool
 from storage.db import get_connection, init_db
@@ -34,6 +40,7 @@ ToolFunc = Callable[..., Any]
 
 TOOL_MAP: dict[str, ToolFunc] = {
     "get_candidate_pool": get_candidate_pool_tool,
+    "get_llm_analysis_queue": get_llm_analysis_queue_tool,
     "search_stocks": search_stocks_tool,
     "get_stock_snapshot": get_stock_snapshot_tool,
     "get_signal_card": get_signal_card_tool,
@@ -41,6 +48,8 @@ TOOL_MAP: dict[str, ToolFunc] = {
     "get_previous_analysis": get_previous_analysis_tool,
     "save_analysis": save_analysis_tool,
     "pool_summary": pool_summary_tool,
+    "generate_report": generate_report_tool,
+    "push_report": push_report_tool,
 }
 
 
@@ -113,7 +122,13 @@ def run_tool(tool_name: str, params: dict[str, Any], config_path: Path, db_path:
 
     conn = get_connection(sqlite_path)
     try:
-        return TOOL_MAP[tool_name](conn=conn, **params)
+        tool_func = TOOL_MAP[tool_name]
+        call_params = dict(params)
+        # 自动注入 config_path（工具函数签名中若声明了 config_path 则传入）
+        sig = inspect.signature(tool_func)
+        if "config_path" in sig.parameters:
+            call_params["config_path"] = str(config_path)
+        return tool_func(conn=conn, **call_params)
     finally:
         conn.close()
 

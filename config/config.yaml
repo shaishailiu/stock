@@ -3,7 +3,7 @@
 
 longbridge:
   timeout: 30                           # 子进程超时（秒）
-  rate_limit_per_second: 10             # OpenAPI 限流: 每秒 10 次
+  rate_limit_per_second: 3              # OpenAPI 限流: 每秒 3 次
 
 data:
   earliest_start_date: "2019-01-01"     # 历史数据起始日期
@@ -45,6 +45,29 @@ bottom_signal:
 
 report:
   output_dir: "reports"                 # 报告输出目录
+  llm_slots_ratio: 1.5                  # LLM 分析名额 = top_n × 此比例
+  sectors:                              # 行业配置（与 watchlist.json 中 sector 字段对应）
+    tech:
+      label: "科技"
+      icon: "💻"
+      top_n: 10
+    internet:
+      label: "互联网"
+      icon: "🌐"
+      top_n: 8
+    consumer:
+      label: "消费"
+      icon: "🛒"
+      top_n: 5
+    new_energy:
+      label: "新能源"
+      icon: "🔋"
+      top_n: 5
+
+push:
+  wecom_bot:
+    enabled: false
+    webhook_url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=65bfafa0-b407-4846-9cf9-e1b877625af3"
 
 llm:
   api_key: "YOUR_LLM_API_KEY"           # LLM API Key（OpenAI 兼容）

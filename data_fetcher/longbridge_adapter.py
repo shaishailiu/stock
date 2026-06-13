@@ -372,12 +372,14 @@ def financial_report_to_fina_indicator(
 
     替代 hk_fina_indicator / us_fina_indicator / fina_indicator。
     """
-    # 构建 indicators map: field_name → indicator_value
+    # 构建 indicators map: field_name → indicator_value / yoy
     indicator_map = {}
+    indicator_yoy_map = {}
     if latest_data and isinstance(latest_data, dict):
         for item in latest_data.get("indicators", []):
             fn = item.get("field_name", "")
             indicator_map[fn] = item.get("indicator_value")
+            indicator_yoy_map[fn] = item.get("yoy")
 
     row = {
         "ts_code": ts_code,
@@ -412,12 +414,18 @@ def financial_report_to_fina_indicator(
     if net_profit is not None and total_assets and total_assets != 0:
         row["roa"] = round(net_profit / total_assets * 100, 2)
 
-    # ── 毛利率 (从 roe / net_profit_margin indicator) ──
-    gross_margin_str = indicator_map.get("roe")  # roe field_name 存的是 ROE 不是毛利率
-    # 实际 --latest 中没有 gross_profit 字段，尝试用净利率推算
-    net_margin = _float(indicator_map.get("net_profit_margin", "").replace("%", "")) if indicator_map.get("net_profit_margin") else None
+    # ── 同比增速 ──
+    revenue_yoy = indicator_yoy_map.get("operating_revenue")
+    profit_yoy = indicator_yoy_map.get("net_profit")
+    if revenue_yoy:
+        row["revenue_yoy"] = _float(revenue_yoy)
+    if profit_yoy:
+        row["profit_yoy"] = _float(profit_yoy)
+
+    # ── 净利率（从 --latest 直接获取）──
+    net_margin = indicator_map.get("net_profit_margin")
     if net_margin is not None:
-        row["netprofit_margin"] = net_margin
+        row["netprofit_margin"] = _float(net_margin)
 
     # ── 资产负债率 ──
     if total_assets and total_debts and total_assets != 0:
@@ -473,6 +481,42 @@ def extract_valuation_history_values(
     values_list = ind_data.get("list", [])
 
     return values_list
+
+
+def extract_industry_median_from_valuation(
+    valuation_history_data,
+    indicator: str = "pe",
+) -> Optional[float]:
+    """
+    从 valuation --history 的 desc 字段中解析行业估值中位数。
+
+    实际 desc 格式 (中文):
+      "当前市盈率 ... 行业中位数 <strong>8.84</strong>。"
+    或:
+      "目前PE ... 行业中位数 <strong>12.50</strong>。"
+
+    返回: 行业中位数 (float)，解析失败返回 None
+    """
+    import re
+
+    if not valuation_history_data or not isinstance(valuation_history_data, dict):
+        return None
+
+    metrics = valuation_history_data.get("metrics", {})
+    ind_data = metrics.get(indicator, {})
+    desc = ind_data.get("desc", "")
+
+    if not desc:
+        return None
+
+    # 匹配 "行业中位数 <strong>8.84</strong>" 模式
+    match = re.search(r"行业中位数\s*<strong>([\d.]+)</strong>", desc)
+    if match:
+        try:
+            return float(match.group(1))
+        except (ValueError, TypeError):
+            return None
+    return None
 
 
 # ══════════════════════════════════════════════════════
